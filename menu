@@ -1,0 +1,251 @@
+#!/bin/bash
+#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+clear
+
+# get the VPS IP
+#ip=`ifconfig venet0:0 | grep 'inet addr' | awk {'print $2'} | sed s/.*://`
+MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+#MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+if [ "$MYIP" = "" ]; then
+	MYIP=$(wget -qO- ipv4.icanhazip.com)
+fi
+#myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+
+flag=0
+
+echo
+
+	#MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+	#if [ "$MYIP" = "" ]; then
+		#MYIP=$(wget -qO- ipv4.icanhazip.com)
+	#fi
+
+	clear
+	
+color1='\e[031;1m'
+color2='\e[34;1m'
+color3='\e[0m'
+color4='\e33;1m'
+echo "" 
+        echo "" 
+        echo ""
+        echo "<=------------- Selamat Datang di Server - IP: $MYIP -------------=>" | lolcat
+        echo "<============================================================================>" | lolcat
+	cname=$( awk -F: '/model name/ {name=$2} END {print name}' /proc/cpuinfo )
+	cores=$( awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo )
+	freq=$( awk -F: ' /cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo )
+	tram=$( free -m | awk 'NR==2 {print $2}' )
+	swap=$( free -m | awk 'NR==4 {print $2}' )
+	up=$(uptime|awk '{ $1=$2=$(NF-6)=$(NF-5)=$(NF-4)=$(NF-3)=$(NF-2)=$(NF-1)=$NF=""; print }')
+
+	echo -e "\e[032;1mCPU model:\e[0m $cname"
+	echo -e "\e[032;1mNumber of cores:\e[0m $cores"
+	echo -e "\e[032;1mCPU frequency:\e[0m $freq MHz"
+	echo -e "\e[032;1mTotal amount of ram:\e[0m $tram MB"
+	echo -e "\e[032;1mTotal amount of swap:\e[0m $swap MB"
+	echo -e "\e[032;1mSystem uptime:\e[0m $up"
+	echo "<============================================================================>" | lolcat
+	echo ""
+	echo -e "${color4}-----=[ Seputar Akun SSH ]=-----"
+	echo -e "${color1} 1${color3}) Create User (${color2}user-add${color3})"
+	echo -e "${color1} 2${color3}) Create Akun Trial (${color2}user-trial${color3})"
+	echo -e "${color1} 3${color3}) Tambah Masa Aktif (${color2}user-renew${color3})"
+	echo -e "${color1} 4${color3}) User List Akun (${color2}user-list${color3})"
+	echo -e "${color1} 5${color3}) Cek Akun Login (${color2}user-login${color3})"
+	echo -e "${color1} 6${color3}) Ganti Password User(${color2}user-pass${color3})"
+	echo -e "${color1} 7${color3}) Banned User (${color2}user-ban${color3})"
+	echo -e "${color1} 8${color3}) Unbanned User (${color2}user-unban${color3})"
+	echo -e "${color1} 9${color3}) Lock User (${color2}user-lock${color3})"
+	echo -e "${color1}10${color3}) Unlock User (${color2}user-unlock${color3})"
+	echo -e "${color1}11${color3}) Delete User (${color2}user-del${color3})"
+	echo -e "${color1}12${color3}) Cek Banned User (${color2}log-ban${color3})"
+	echo -e "${color1}13${color3}) Cek Active User (${color2}user-active-list${color3})"
+	echo -e "${color1}14${color3}) Cek Expire User (${color2}user-expire-list${color3})"
+	echo -e "${color1}15${color3}) Delete Expire User (${color2}del-user-expire${color3})"
+	echo -e "${color1}16${color3}) ON Kill Multi Login (${color2}kill-on${color3})"
+	echo -e "${color1}17${color3}) OFF Kill Multi Login (${color2}kill-off${color3})"
+	echo -e " "
+	echo -e "${color4}-----=[ Seputar VPS ]=-----"
+	echo -e "${color1}18${color3}) Speedtest Server (${color2}speedtest${color3})"
+	echo -e "${color1}19${color3}) Benchmark Server (${color2}bench-network${color3})"
+	echo -e "${color1}20${color3}) Cek Server RAM Usage (${color2}ram${color3})"
+	echo -e "${color1}21${color3}) Clean Cache RAM (${color2}chache${color3})"
+	echo -e "${color1}22${color3}) Edit Banner Login (${color2}edit-banner${color3})"
+	echo -e "${color1}23${color3}) Restart All Service (${color2}resvis${color3})"
+	echo -e "${color1}24${color3}) Menu Edit Port (${color2}edit-port${color3})"
+	echo -e "${color1}25${color3}) Reboot VPS(${color2}reboot${color3})"
+	echo -e "${color1}26${color3}) Change Password VPS (${color2}passwd${color3})"
+	echo -e "${color1}27${color3}) Ubah Hostname VPS (${color2}change-host${color3})"
+	echo -e "${color1}28${color3}) Cek Health Server (${color2}health${color3})"
+	echo -e "${color1}29${color3}) Ram Usage (${color2}ram${color3})"
+	echo -e " "
+	echo -e "${color4}-----=[ Others Menu ]=-----"
+	echo -e "${color1}30${color3}) View Log Install (${color2}log-install${color3})"
+	echo -e "${color1}31${color3}) Diagnosa VPS (${color2}diagnosa${color3})"
+	echo ""
+	echo -e "    \e[032;1m x\e[0m\e[037;1m)\e[0m Exit"
+	read -p "Masukkan pilihan anda, kemudian tekan tombol ENTER: " option1
+	case $option1 in
+	1)
+	clear
+	user-add
+	;;
+	2)
+	clear
+	user-trial
+	;;
+	3)
+	clear
+	user-renew
+	;;
+	4)
+	clear
+	user-list
+	;;
+	5)
+	clear
+	user-login
+	6)
+	clear
+	user-pass
+	;;
+	7)
+	clear
+	user-ban
+	;;
+	8)
+	clear
+	user-unban
+	9)
+	clear
+	user-lock
+	;;
+	10)
+	clear
+	user-unlock
+	;;
+	11)
+	clear
+	user-del
+	;;
+	12)
+	clear
+	log-ban
+	;;
+	13)
+	clear
+	user-active-list
+	;;
+	14)
+	clear
+	user-expire-list
+	;;
+	15)
+	clear
+	del-expire-list
+	;;
+	16)
+	clear
+	read -p "Isikan Maximal User Login (1-2): " MULTILOGIN2
+	#echo "@reboot root /root/userlimit.sh" > /etc/cron.d/userlimitreboot
+	echo "* * * * * root /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit1
+	echo "* * * * * root sleep 10; /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit2
+	echo "* * * * * root sleep 20; /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit3
+	echo "* * * * * root sleep 30; /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit4
+	echo "* * * * * root sleep 40; /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit5
+	echo "* * * * * root sleep 50; /usr/bin/userlimit.sh $MULTILOGIN2" > /etc/cron.d/userlimit6
+	#echo "@reboot root /root/userlimitssh.sh" >> /etc/cron.d/userlimitreboot
+	echo "* * * * * root /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit1
+	echo "* * * * * root sleep 11; /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit2
+	echo "* * * * * root sleep 21; /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit3
+	echo "* * * * * root sleep 31; /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit4
+	echo "* * * * * root sleep 41; /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit5
+	echo "* * * * * root sleep 51; /usr/bin/userlimitssh.sh $MULTILOGIN2" >> /etc/cron.d/userlimit6
+	service cron restart
+	service ssh restart
+	service dropbear restart
+	echo "------------+ AUTO KILL SUDAH DI AKTIFKAN BOSS +--------------" | lolcat
+	;;
+	17)
+	clear
+	rm -rf /etc/cron.d/userlimit1
+	rm -rf /etc/cron.d/userlimit2
+	rm -rf /etc/cron.d/userlimit3
+	rm -rf /etc/cron.d/userlimit4
+	rm -rf /etc/cron.d/userlimit5
+	rm -rf /etc/cron.d/userlimit6
+	rm -rf /etc/cron.d/userlimitreboot
+	service cron restart
+	service ssh restart
+	service dropbear restart
+	;;
+	18)
+	clear
+	echo "SPEEDTEST SERVER" | boxes -d peek | lolcat
+	echo "-----------------------------------------"
+	speedtest --share | lolcat
+	echo "-----------------------------------------"
+	;;
+	19)
+	clear
+	benchmark | lolcat
+	;;
+	20)
+	clear
+	ps-mem | boxes -d dog | lolcat
+	;;
+	21)
+	clear
+	cache-ram
+	;;
+	22)
+	clear
+	edit-banner
+	;;
+	23)
+	clear
+	service ssh restart
+	service dropbear restart
+	service squid restart
+        service stunnel4 restart
+	echo "Semua sudah Berhasil di restart boss!!!" | boxes -d boy | lolcat
+	;;
+	24)
+	clear
+	edit-port
+	;;
+	25)
+	clear
+	reboot
+	;;
+	26)
+	read -p "Silahkan isi password baru untuk VPS anda: " pass	
+        echo "root:$pass" | chpasswd
+	echo "Ciieeee.. Ciieeeeeee.. Abis Ganti Password VPS Nie Yeeee...!!!"| boxes -d boy | lolcat
+	echo ""
+	;;
+	27)
+	clear
+	echo "Masukan HOSTNAME VPS, yang mau diganti :"
+	echo "  contoh : " hostname Orang-Ganteng
+	;;
+	28)
+	clear
+	health
+	;;
+	29)
+	clear
+	free -m
+	;;
+	30)
+	clear
+	cat log-install.txt
+	;;
+	31)
+	clear
+	Diagnosa
+	;;
+	x)
+            ;;
+        *) menu;;
+    esac
