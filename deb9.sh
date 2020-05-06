@@ -33,7 +33,7 @@ vps="rizwan";
 #if [[ $vps = "rizwan" ]]; then
 	#source="http://"
 #else
-	source="https://raw.githubusercontent.com/acillsadank/deb9/master"
+	source="https://raw.githubusercontent.com/acillsadang/deb9/master"
 #fi
 
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
@@ -113,7 +113,7 @@ wget -O /etc/iptables.up.rules "$source/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 MYIP=`curl -s ifconfig.me`;
 MYIP2="s/xxxxxxxxx/$MYIP/g";
-sed -i $MYIP2 /etc/iptables.up.rules;
+sed -i $MYIP2 /etc/iptables.up.rules
 iptables-restore < /etc/iptables.up.rules
 
 # disable ipv6
@@ -150,15 +150,14 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart;
 
-# Web Server
+# install webserver
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "$source/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/acillsadank/install/master/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
-wget -O /home/vps/public_html/index.html $source/index.html
-wget -O /etc/nginx/conf.d/vps.conf "$source/vps.conf"
+echo "<pre>Setup by KadallFamily</pre>" > /home/vps/public_html/index.html
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/acillsadank/install/master/vps.conf"
 sed -i 's/listen = \/var\/run\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 service php7.0-fpm restart
 service nginx restart
@@ -331,7 +330,7 @@ curl "https://bintray.com/user/downloadSubjectPublicKey?username=bintray"| apt-k
 apt-get update
 apt-get install neofetch
 echo "clear" >> .profile
-echo "neofetch" >> .profile
+echo "neofetch" | lolcat ' >> .profile
 
 # finishing
 chown -R www-data:www-data /home/vps/public_html
