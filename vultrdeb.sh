@@ -18,7 +18,7 @@ OS=`uname -m`;
 
 #MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
-if [ "$MYIP" = "s/xxxxxxxxx/$MYIP/g";" ]; then
+if [ "$MYIP" = " " ]; then
 	MYIP=$(wget -qO- ipv4.icanhazip.com)
 fi
 MYIP2="s/xxxxxxxxx/$MYIP/g";
@@ -27,13 +27,13 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
-#vps="rizwan";
-vps="rizwan";
+#vps="zvur";
+vps="aneka";
 
-#if [[ $vps = "rizwan" ]]; then
+#if [[ $vps = "zvur" ]]; then
 	#source="http://"
 #else
-	source="https://raw.githubusercontent.com/acillsadang/deb9/master"
+	source="https://raw.githubusercontent.com/piscox/deb9/master"
 #fi
 
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
@@ -113,7 +113,7 @@ wget -O /etc/iptables.up.rules "$source/iptables.up.rules"
 sed -i '$ i\iptables-restore < /etc/iptables.up.rules' /etc/rc.local
 MYIP=`curl -s ifconfig.me`;
 MYIP2="s/xxxxxxxxx/$MYIP/g";
-sed -i $MYIP2 /etc/iptables.up.rules
+sed -i $MYIP2 /etc/iptables.up.rules;
 iptables-restore < /etc/iptables.up.rules
 
 # disable ipv6
@@ -150,14 +150,15 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart;
 
-# install webserver
+# Web Server
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/acillsadank/install/master/nginx.conf"
+wget -O /etc/nginx/nginx.conf "$source/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by KadallFamily</pre>" > /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/acillsadank/install/master/vps.conf"
+echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
+wget -O /home/vps/public_html/index.html $source/index.html
+wget -O /etc/nginx/conf.d/vps.conf "$source/vps.conf"
 sed -i 's/listen = \/var\/run\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 service php7.0-fpm restart
 service nginx restart
@@ -168,7 +169,7 @@ tar xf cronjob.tar;mv uptime.php /home/vps/public_html/
 mv usertol userssh uservpn /usr/bin/;mv cronvpn cronssh /etc/cron.d/
 chmod +x /usr/bin/usertol;chmod +x /usr/bin/userssh;chmod +x /usr/bin/uservpn;
 useradd -m -g users -s /bin/bash rizwan
-echo "rizwam:11091997" | chpasswd
+echo "rizwan:11091997" | chpasswd
 clear
 rm -rf /root/cronjob.tar
 
@@ -189,16 +190,16 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 # dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 456"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=444/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner"@g' /etc/default/dropbear
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner.txt"@g' /etc/default/dropbear
 service ssh restart
 service dropbear restart
 
 # BAANER
-wget -O /etc/banner $source/banner
+wget -O /etc/banner.txt $source/banner.txt
 
 # install stunnel4
 wget $source/ssl.sh
@@ -330,7 +331,7 @@ curl "https://bintray.com/user/downloadSubjectPublicKey?username=bintray"| apt-k
 apt-get update
 apt-get install neofetch
 echo "clear" >> .profile
-echo "neofetch" | lolcat ' >> .profile
+echo "neofetch" >> .profile
 
 # finishing
 chown -R www-data:www-data /home/vps/public_html
