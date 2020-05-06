@@ -15,4 +15,4 @@
 
 
 
-_Developers by Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )_
+_Developers by RIZWAN ARIF FIRMANSYAH (6283145968517)_

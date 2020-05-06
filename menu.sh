@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 # get the VPS IP
@@ -211,7 +211,7 @@ fi
 	27)
 	clear
 	echo "Masukan HOSTNAME VPS, yang mau diganti :"
-	echo "  contoh : " hostname Orang-Ganteng "
+	echo "  contoh : " hostname Orang-Ganteng
 	;;
 	28)
 	clear

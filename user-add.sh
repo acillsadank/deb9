@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 if [[ $USER != 'root' ]]; then
@@ -36,20 +36,18 @@ clear
 
 echo -e ""
 echo -e "
-|       Informasi Akun Baru SSH      |
+|       Informasi Akun Baru SSH      | 
 ============[[-SERVER-PREMIUM-]]===========
 Host/IP              : $MYIP
 Username             : $username
 Password             : $password
 Port default SSL/TLS : 443
-Port default dropbear: 143, 443
+Port default dropbear: 143, 456
 Port default openSSH : 22
 Port default squid   : 80, 8080, 3128
-
 Auto kill user maximal login 2
 -------------------------------------------
 Valid s/d: $(date -d "$AKTIF days" +"%d-%m-%Y")
 ===========================================" | lolcat
-echo -e " Mod By Rizwa Arif Firmansyah " | lolcat
-echo -e
+echo -e ""
 fi

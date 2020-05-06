@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 
@@ -18,7 +18,7 @@ OS=`uname -m`;
 
 #MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
-if [ "$MYIP" = " " ]; then
+if [ "$MYIP" = "" ]; then
 	MYIP=$(wget -qO- ipv4.icanhazip.com)
 fi
 MYIP2="s/xxxxxxxxx/$MYIP/g";
@@ -27,13 +27,14 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
+
 #vps="zvur";
 vps="aneka";
 
 #if [[ $vps = "zvur" ]]; then
 	#source="http://"
 #else
-	source="https://raw.githubusercontent.com/piscox/deb9/master"
+	source="https://raw.githubusercontent.com/acillsadank/deb9/master"
 #fi
 
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
@@ -184,22 +185,22 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200
 cd
 
 # ssh
-sed -i '$ i\Banner /etc/banner.txt' /etc/ssh/sshd_config
+sed -i '$ i\Banner /etc/banner' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=444/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 456"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner.txt"@g' /etc/default/dropbear
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner"@g' /etc/default/dropbear
 service ssh restart
 service dropbear restart
 
 # BAANER
-wget -O /etc/banner.txt $source/banner.txt
+wget -O /etc/banner $source/banner
 
 # install stunnel4
 wget $source/ssl.sh
@@ -317,8 +318,8 @@ cd
 apt-get install boxes
 
 # install teks berwarna
-apt-get -y install ruby
-gem install lolcat
+sudo apt-get -y install ruby
+sudo gem install lolcat
 
 # install neofetch
 echo "deb http://dl.bintray.com/dawidd6/neofetch jessie main" | tee -a /etc/apt/sources.list
@@ -351,13 +352,13 @@ history -c
 clear
 echo ""  | tee -a log-install.txt
 echo "=============================================="  | tee -a log-install.txt | lolcat
-echo "  Autoscript Created By Rizwan Arif Firmansyah "  | tee -a log-install.txt | lolcat
+echo "  Autoscript Created By RIZWAN ARIF FIRMANSYAH "  | tee -a log-install.txt | lolcat
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
 echo "Facebook    : https://www.facebook.com/mrxh3"  | tee -a log-install.txt | lolcat
 echo "Contact Me  : +62 83145968517"  | tee -a log-install.txt | lolcat
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
 echo "Service     :" | tee -a log-install.txt | lolcat
-echo "-------------" | tee -a log-install.txt | lolcat
+echo "--------------------------------------------------------------------------------------------" | tee -a log-install.txt | lolcat
 echo "Nginx       : 81"  | tee -a log-install.txt | lolcat
 echo "Webmin      : http://$MYIP:10000/" | tee -a log-install.txt | lolcat
 echo "badvpn      : badvpn-udpgw port 7200" | tee -a log-install.txt | lolcat
@@ -375,9 +376,9 @@ echo "Auto Lock & Delete User Expire tiap jam 00:00" | tee -a log-install.txt | 
 echo "VPS Restart : 00.00/24.00 WIB"   | tee -a log-install.txt | lolcat
 echo ""  | tee -a log-install.txt
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
-echo "---------------------- THANK YOU FOR CHOIS US ------------------------"  | tee -a log-install.txt | lolcat
-echo "====================================================="  | tee -a log-install.txt | lolcat
+echo "    -------THANK YOU FOR CHOIS US--------"  | tee -a log-install.txt | lolcat
+echo "=============================================="  | tee -a log-install.txt | lolcat
 echo "-   PLEASE REBOOT TAKE EFFECT TERIMA KASIH   -" | lolcat
 echo "ALL MODD DEVELOPED SCRIPT BY RIZWAN ARIF FIRMANSYAH" | lolcat
-echo "=====================================================" | lolcat
+echo "==============================================" | lolcat
 cat /dev/null > ~/.bash_history && history -c

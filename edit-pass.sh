@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 if [[ $USER != 'root' ]]; then
@@ -56,9 +56,9 @@ if [ $? -eq 0 ]; then
     echo "Username      : $username" | lolcat
 		echo "Password      : $password" | lolcat
 		echo "SSL/TLS Port  : 443" | lolcat
-    echo "Dropbear Port : 143, 443" | lolcat
-		echo "OpenSSH Port  : 22" | lolcat
-		echo "Squid Proxy   : 80, 8080, 3128" | lolcat
+    echo "Dropbear Port : 80, 444" | lolcat
+		echo "OpenSSH Port  : 22, 143" | lolcat
+		echo "Squid Proxy   : 8080, 3128" | lolcat
 		echo "-----------------------------------" | lolcat
 	else
 		echo "Penggantian password akun [$username] Gagal"

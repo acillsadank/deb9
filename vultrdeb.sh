@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 
@@ -18,8 +18,8 @@ OS=`uname -m`;
 
 #MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
-if [ "$MYIP" = " " ]; then
-	MYIP=$(wget -qO- ipv4.icanhazip.com);
+if [ "$MYIP" = "" ]; then
+	MYIP=$(wget -qO- ipv4.icanhazip.com)
 fi
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
@@ -27,10 +27,10 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
-#vps="rizwan";
-vps="rizwan";
+#vps="zvur";
+vps="aneka";
 
-#if [[ $vps = "rizwan" ]]; then
+#if [[ $vps = "zvur" ]]; then
 	#source="http://"
 #else
 	source="https://raw.githubusercontent.com/acillsadank/deb9/master"
@@ -351,13 +351,13 @@ history -c
 clear
 echo ""  | tee -a log-install.txt
 echo "=============================================="  | tee -a log-install.txt | lolcat
-echo "  Autoscript Created By Rizwan Arif Firmansyah "  | tee -a log-install.txt | lolcat
+echo "  Autoscript Created By RIZWAN ARIF FIRMANSYAH "  | tee -a log-install.txt | lolcat
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
 echo "Facebook    : https://www.facebook.com/mrxh3"  | tee -a log-install.txt | lolcat
 echo "Contact Me  : +62 83145968517"  | tee -a log-install.txt | lolcat
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
 echo "Service     :" | tee -a log-install.txt | lolcat
-echo "-------------" | tee -a log-install.txt | lolcat
+echo "--------------------------------------------------------------------------------------------" | tee -a log-install.txt | lolcat
 echo "Nginx       : 81"  | tee -a log-install.txt | lolcat
 echo "Webmin      : http://$MYIP:10000/" | tee -a log-install.txt | lolcat
 echo "badvpn      : badvpn-udpgw port 7200" | tee -a log-install.txt | lolcat
@@ -375,9 +375,9 @@ echo "Auto Lock & Delete User Expire tiap jam 00:00" | tee -a log-install.txt | 
 echo "VPS Restart : 00.00/24.00 WIB"   | tee -a log-install.txt | lolcat
 echo ""  | tee -a log-install.txt
 echo "--------------------------------------------------------------------------------------------"  | tee -a log-install.txt | lolcat
-echo "---------------------- THANK YOU FOR CHOIS US ------------------------"  | tee -a log-install.txt | lolcat
-echo "====================================================="  | tee -a log-install.txt | lolcat
+echo "    -------THANK YOU FOR CHOIS US--------"  | tee -a log-install.txt | lolcat
+echo "=============================================="  | tee -a log-install.txt | lolcat
 echo "-   PLEASE REBOOT TAKE EFFECT TERIMA KASIH   -" | lolcat
 echo "ALL MODD DEVELOPED SCRIPT BY RIZWAN ARIF FIRMANSYAH" | lolcat
-echo "=====================================================" | lolcat
+echo "==============================================" | lolcat
 cat /dev/null > ~/.bash_history && history -c

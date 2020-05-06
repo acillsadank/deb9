@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 
@@ -27,10 +27,10 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
-#vps="rizwan";
-vps="rizwan";
+#vps="zvur";
+vps="aneka";
 
-#if [[ $vps = "rizwan" ]]; then
+#if [[ $vps = "zvur" ]]; then
 	#source="http://"
 #else
 	source="https://raw.githubusercontent.com/acillsadank/deb9/master"
@@ -59,6 +59,7 @@ socket = r:TCP_NODELAY=1
 
 [dropbear]
 accept = 443
+connect = 127.0.0.1:143
 connect = 127.0.0.1:143
 
 END

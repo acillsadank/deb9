@@ -1,5 +1,5 @@
 #!/bin/bash
-#Autoscript Created By Rizwan Arif Firmansyah ( acill.sadank@gmail.com ) ( https://wa.me/6283145968517 )
+#Autoscript Created By Rizwan Arif Firmansyah EMAIL (acill.sadank@gmail.com) WA (6283145968517)
 clear
 
 # get the VPS IP
@@ -48,7 +48,7 @@ Host/IP              : $MYIP
 Username             : $username
 Password             : $password
 Port default SSL/TLS : 443
-Port default dropbear: 143, 443
+Port default dropbear: 143, 456
 Port default openSSH : 22
 Port default squid   : 80, 8080, 3128
 Auto kill user maximal login 2
