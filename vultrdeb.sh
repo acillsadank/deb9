@@ -27,13 +27,13 @@ if [[ $ether = "" ]]; then
         ether=eth0
 fi
 
-#vps="zvur";
-vps="aneka";
+#vps="rizwan";
+vps="rizwan";
 
-#if [[ $vps = "zvur" ]]; then
+#if [[ $vps = "rizwan" ]]; then
 	#source="http://"
 #else
-	source="https://raw.githubusercontent.com/piscox/deb9/master"
+	source="https://raw.githubusercontent.com/acillsadank/deb9/master"
 #fi
 
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
@@ -184,22 +184,22 @@ screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200
 cd
 
 # ssh
-sed -i '$ i\Banner /etc/banner.txt' /etc/ssh/sshd_config
+sed -i '$ i\Banner /etc/banner' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=444/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 80"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 456"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner.txt"@g' /etc/default/dropbear
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/banner"@g' /etc/default/dropbear
 service ssh restart
 service dropbear restart
 
 # BAANER
-wget -O /etc/banner.txt $source/banner.txt
+wget -O /etc/banner $source/banner
 
 # install stunnel4
 wget $source/ssl.sh
